@@ -1,0 +1,43 @@
+mkdir basedir                                                                       (create dir)
+python3 -m venv myvenv                                                              (initialized venv)
+source myvenv/bin/activate                                                          (start venv)
+django-admin startproject mysite                                                    (auto create django site template)
+nano mysite/settings.py:
+    tz = 'America/Chicago
+    after static_url: STATIC_ROOT = os.path.join(BASE_DIR, 'static')'
+    add '127.0.0.1' and any other ALLOWED_HOSTS
+create data base: mysite/python manage.py migrate
+start server: python manage.py runserver (optional add: 0.0.0.0:8000)
+create application: python manage.py startapp APPNAME
+add app to /mysite/settings.py
+
+TO UPDATE DATABASE: python manage.py makemigrations APPNAME
+THEN: python manage.py migrate APPNAME
+
+
+CREATE MODEL
+from django.utils import timezone
+--------------------------------
+from django GIRLS:
+    class Post(models.Model):
+        author = models.ForeignKey('auth.User',on_delete=models.CASCADE)
+        title = models.CharField(max_length=200)
+        text = models.TextField()
+        created_date = models.DateTimeField(
+                default=timezone.now)
+        published_date = models.DateTimeField(
+                blank=True, null=True)
+
+        def publish(self):
+            self.published_date = timezone.now()
+            self.save()
+
+        def __str__(self):
+            return self.title
+----------------------------------
+
+
+IN APPNAME.admin.py:
+from .models import MODELNAME
+admin.site.register(MODELNAME)
+python manage.py createsuperuser
