@@ -2,13 +2,12 @@ from django.db import models
 from django.utils import timezone
 import getpass
 
-class Device(models.Model):
+class Interface(models.Model):
     name = models.CharField(max_length=50)
-    user = models.CharField(max_length=50)
-    hostname = models.CharField(max_length=50)
-    created_date = models.DateTimeField(default=timezone.now)
-    
-    def create_device(self):
+    interface_type = models.CharField(max_length=50)
+    pin = models.IntegerField()
+        
+    def create_interface(self):
         self.save()
     
     def __str__(self):

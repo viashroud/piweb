@@ -37,7 +37,8 @@ INSTALLED_APPS = [
     'django.contrib.sessions',
     'django.contrib.messages',
     'django.contrib.staticfiles',
-    'piwebapp'
+    'piwebapp',
+    'channels',
 ]
 
 MIDDLEWARE = [
@@ -69,7 +70,7 @@ TEMPLATES = [
 ]
 
 WSGI_APPLICATION = 'piwebsite.wsgi.application'
-
+ASGI_APPLICATION = "piwebsite.routing.application"
 
 # Database
 # https://docs.djangoproject.com/en/2.0/ref/settings/#databases

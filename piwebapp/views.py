@@ -1,3 +1,7 @@
 from django.shortcuts import render
+from .models import Interface
+from django.utils import timezone
 
-# Create your views here.
+def base(request):
+    relays = Interface.objects.all().order_by('pin')
+    return render(request, 'piwebapp/base.html', {'relays': relays})
